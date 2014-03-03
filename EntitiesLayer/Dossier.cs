@@ -2,31 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace EntitiesLayer
 {
-    class Dossier : Entity
+    [Serializable]
+    public class Dossier : Entity
     {
+        [XmlAttribute]
         public string Title
         {
             get;
             set;
         }
+        [XmlAttribute]
         public string ICone
         {
             get;
             set;
         }
+
+        [XmlAttribute]
         public string Description
         {
             get;
             set;
         }
+        [XmlAttribute]
         public List<Dossier> Dosssiers
         {
             get;
             set;
         }
+        [XmlAttribute]
         public List<Item> Items
         {
             get;

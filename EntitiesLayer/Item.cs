@@ -2,31 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace EntitiesLayer
 {
-    class Item : Entity
+    [Serializable]
+    public class Item : Entity
     {
+        [XmlAttribute]
         public string Title
         {
             get;
             set;
         }
+        
+        [XmlAttribute]
         public string Login
         {
             get;
             set;
         }
+        
+        [XmlAttribute]
         public string Password
         {
             get;
             set;
         }
+
+        [XmlAttribute]
         public string Url
         {
             get;
             set;
         }
+
+        [XmlAttribute]
         public string Description
         {
             get;
