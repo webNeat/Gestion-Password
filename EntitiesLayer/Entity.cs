@@ -29,5 +29,9 @@ namespace EntitiesLayer
             Created = DateTime.UtcNow;
             Modified = DateTime.UtcNow;
         }
+        public override string ToString()
+        {
+            return "Date Création <" + Created + "> Date Modification<" + Modified + ">";
+        }
     }
 }

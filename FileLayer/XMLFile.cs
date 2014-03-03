@@ -14,12 +14,15 @@ namespace FileLayer
         {
             //On crée une instance de XmlSerializer dans lequel on lui spécifie le type de l'objet à sérialiser
             XmlSerializer serilizer = new XmlSerializer(typeof(UserTree));
-            //Création d'un Stream Writer qui permet d'écrire dans un fichier. On lui spécifie le chemin.
-            StreamWriter stream = new StreamWriter(getFileName(Environment.UserName), false);
-            //On sérialise en spécifiant le flux d'écriture et l'objet à sérialiser.
-            serilizer.Serialize(stream, user);
-            // On ferme le flux en tous temps.
-            stream.Close();
+            //Création d'un Stream Writer qui permet d'écrire dans un fichier. On lui spécifie le chemin.   
+            using(StreamWriter stream = new StreamWriter(getFileName(Environment.UserName), false))
+            {
+                //On sérialise en spécifiant le flux d'écriture et l'objet à sérialiser.
+                serilizer.Serialize(stream, user);
+                // On ferme le flux en tous temps.
+            }
+
+            
         }
 
         public UserTree load(string userName)
@@ -27,13 +30,14 @@ namespace FileLayer
             //On crée une instance de XmlSerializer dans lequel on lui spécifie le type
             XmlSerializer serializer = new XmlSerializer(typeof(UserTree));
             //Création d'un StreamReader qui permet de lire un fichier. On lui spécifie le chemin.
-            StreamReader stream = new StreamReader(getFileName(userName));
-            //On obtient une instance de l'objet désérialisé.
-            UserTree user = (UserTree)serializer.Deserialize(stream);
-            //On ferme le flux en tout temps !!!
-            stream.Close();
-            return user;
-           
+            using (StreamReader stream = new StreamReader(getFileName(userName)))
+            {
+                //On obtient une instance de l'objet désérialisé.
+                UserTree user = (UserTree)serializer.Deserialize(stream);
+                //On ferme le flux en tout temps !!!
+                return user;
+            }
+            
         }
 
         public bool hasFile(string userName)

@@ -43,7 +43,7 @@ namespace EntitiesLayer
             get;
             set;
         }
-
+        public Item(){}
         public Item(string title, string login, string password, string url, string description)
         {
             Title = title;
@@ -54,5 +54,9 @@ namespace EntitiesLayer
  
         }
 
+        public override string ToString()
+        {
+            return "Titre Item <" + Title + ">\t" + " Login <" + Login + ">  Paswd <" + Password + "> DateC <" + Created + "> DateM <" + Modified + "> Url <" + Url + ">  Description <" + Description + ">\n";
+        }
     }
 }

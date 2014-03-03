@@ -18,8 +18,8 @@ namespace FileLayer
        
             using(Stream stream = File.Open(getFileName(Environment.UserName), FileMode.Create))
             {
-                using (SymmetricAlgorithm algo = SymmetricAlgorithm.Create(key))
-                {
+                using (SymmetricAlgorithm algo = SymmetricAlgorithm.Create(user.Password))
+                {//algo = null cela du symetric algorithmFactory ??
                     using(CryptoStream encryptedFile = new CryptoStream(stream, algo.CreateEncryptor(), CryptoStreamMode.Write))
                     {
                         BinaryFormatter formater = new BinaryFormatter();

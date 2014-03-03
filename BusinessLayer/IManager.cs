@@ -1,15 +1,16 @@
-﻿using System;
+﻿using EntitiesLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EntitiesLayer;
-namespace FileLayer
+
+namespace BusinessLayer
 {
-    public interface IDataBAse
+    interface IManager
     {
         void save(UserTree user);
         UserTree load(string userName);
-        bool hasFile(string userName);
+     
     }
 }

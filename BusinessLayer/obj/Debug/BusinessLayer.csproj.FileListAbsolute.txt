@@ -1,0 +1,9 @@
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\bin\Debug\BusinessLayer.dll
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\bin\Debug\EntitiesLayer.dll
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\bin\Debug\FileLayer.dll
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\bin\Debug\EntitiesLayer.pdb
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\bin\Debug\FileLayer.pdb
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\obj\Debug\BusinessLayer.dll
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\BusinessLayer\obj\Debug\BusinessLayer.pdb

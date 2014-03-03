@@ -24,12 +24,14 @@ namespace EntitiesLayer
             set;
         }
 
+
         [XmlAttribute]
         public int NumberOFChars
         {
             get;
             set;
         }
+
 
         [XmlAttribute]
         public int NumerOfSpeciaux
@@ -44,9 +46,19 @@ namespace EntitiesLayer
             get;
             set;
         }
-        
-        public UserTree(string userName)
+
+
+        public UserTree()
         {
+            NumberOFChars = 5;
+            NumerOfSpeciaux =5;
+            
+        }
+       
+        public UserTree(string userName, int nbc, int nbs)
+        {
+            NumberOFChars = nbc;
+            NumerOfSpeciaux = nbs;
             UserName = userName;
             Password = generatePassword();
             Racine = new Dossier("Racine","c:/", "Dossier Racine");
@@ -67,12 +79,17 @@ namespace EntitiesLayer
                 chaine[i] = speciaux[rand.Next(0, speciaux.Length)];
 
             }
-            for (int i = 0; i < NumberOFChars; i++)
+            for (int i = NumerOfSpeciaux; i < (NumberOFChars + NumerOfSpeciaux); i++)
             {
                 chaine[i] = chars[rand.Next(0, chars.Length)];
             }
             // mélanger la chaine avant de retourner
             return new String(chaine);
+        }
+
+        public override string ToString()
+        {
+            return "Nom Utilisateur  : " + UserName + " Paswword : " + Password + " DateC <" + Created + "> DateM <" + Modified + ">\n" + Racine.ToString();
         }
 
     }
