@@ -15,7 +15,7 @@ namespace EntitiesLayer
         public DateTime Created
         {
             get;
-            private set;
+            set;
         }
         
         [XmlAttribute]

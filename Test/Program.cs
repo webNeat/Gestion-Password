@@ -18,10 +18,12 @@ namespace Test
             tree.Racine.AddSousDosToDossier(new Dossier("Sport", "ico1", "dossier du sport"));
             tree.Racine.GetLastDossier().AddItemToDossier(new Item("koora", "aminbenhamou", tree.generatePassword(), "http//koora.com", "mon copte koora"));         
             
-            Console.WriteLine(tree.ToString());
+          //  Console.WriteLine(tree.ToString());
 
-            Manager manager =  Manager.GetInstance(new BinaryFile());
+            Manager manager =  Manager.GetInstance(new XMLFile());
             manager.save(tree);
+            Console.WriteLine(manager.load(Environment.UserName).ToString());
+
 
         }
     }
