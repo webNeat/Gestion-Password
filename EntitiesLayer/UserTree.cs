@@ -67,9 +67,9 @@ namespace EntitiesLayer
         public string generatePassword()
         {
             //j'ai défini une chaine qui contient tous les lettres Maj et Min
-            string chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ";
+            string chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
             //une autre chaine qui contient nombre et les charactères spéciaux
-            string speciaux = "0123456789!@$?_-";
+            string speciaux = "!@$?_-(){}[]|";
             // c'est la chaines qui va contenir le pswd
             char [] chaine = new char[NumberOFChars + NumerOfSpeciaux];
             Random rand = new Random();
@@ -84,7 +84,8 @@ namespace EntitiesLayer
                 chaine[i] = chars[rand.Next(0, chars.Length)];
             }
             // mélanger la chaine avant de retourner
-            return new String(chaine);
+            String mix = new String(chaine.OrderBy(s => (rand.Next(2) % 2) == 0).ToArray());
+            return mix;
         }
 
         public override string ToString()

@@ -19,7 +19,7 @@ namespace FileLayer
             {
                 //On sérialise en spécifiant le flux d'écriture et l'objet à sérialiser.
                 serilizer.Serialize(stream, user);
-                // On ferme le flux en tous temps.
+                
             }
 
             
