@@ -155,7 +155,10 @@ namespace GraphicLayer
                             Controller.Config();
                             break;
                         case "modifierconfig" :
-                            Controller.ModifierConfig();
+                            if (arguments.Count < 2)
+                                throw new Exception("Rien à modifier !");
+                            values = MakeMap(arguments.GetRange(1, arguments.Count - 1));
+                            Controller.ModifierConfig(values);
                             break;
                         case "sauvegarder" :
                             Controller.Sauvegarder();

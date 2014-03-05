@@ -10,7 +10,6 @@ using System.Diagnostics;
 
 namespace GraphicLayer
 {
-    // Read/Update user config 
     // TODO: Add Threads ... !
     // Regex Checkings !
     // App Settings
@@ -48,7 +47,7 @@ namespace GraphicLayer
                 Console.WriteLine("Vous n'avez pas Sauvegarder les dernières modifications ! Voullez-vous les sauvegarder avant de quiter ? (oui, non) ");
                 if (Console.ReadLine().ToLower() == "oui")
                 {
-                    manager.Save();
+                    Sauvegarder();
                 }
             }
         }
@@ -206,14 +205,49 @@ namespace GraphicLayer
             Console.WriteLine("");
         }
         public static void Config(){
-
+            UserSettings us = manager.GetUserSettings();
+            Console.WriteLine("Nombre des caractères par mot de passe : {0}", us.NumberOFChars);
+            Console.WriteLine("Nombre des caractères spéciaux par mot de passe : {0}", us.NumerOfSpeciaux);
         }
-        public static void ModifierConfig(){
 
+        public static void ModifierConfig(Dictionary<string, string> values)
+        {
+            UserSettings us = manager.GetUserSettings();
+            int nc = us.NumberOFChars;
+            if (values.ContainsKey("pass-taille"))
+                nc = Convert.ToInt32(values["pass-taille"].Trim());
+            int ncs = us.NumerOfSpeciaux;
+            if (values.ContainsKey("spec-carac"))
+                ncs = Convert.ToInt32(values["spec-carac"].Trim());
+            string pass = us.Password;
+            if (values.ContainsKey("pass"))
+                pass = values["pass"];
+
+            manager.EditUserSettings(pass, nc, ncs);
+            Console.WriteLine("Vos paramètres ont été modifiés avec succés");
         }
+
         public static void Sauvegarder(){
-            manager.Save();
-            Console.WriteLine("Vos données ont été sauvegardées");
+            int count = 3;
+            do
+            {
+                Console.Write("Entrez votre mot de passe pour sauvgarder les changements : ");
+                ConsoleColor temp = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Black;
+                string pass = Console.ReadLine();
+                Console.ForegroundColor = temp;
+                if (pass == manager.GetUserSettings().Password)
+                {
+                    manager.Save();
+                    Console.WriteLine("Vos données ont été sauvegardées");
+                    return;
+                }
+                else
+                {
+                    count --;
+                    Console.WriteLine("Mot de passe incorrect ! Vous avez droit à {0} autres tentatives !", count);
+                }
+            } while (count > 0);
         }
     }
 }
