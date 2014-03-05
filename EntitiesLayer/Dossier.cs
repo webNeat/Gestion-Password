@@ -16,7 +16,7 @@ namespace EntitiesLayer
             set;
         }
         [XmlAttribute]
-        public string ICone
+        public string Icone
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace EntitiesLayer
         public Dossier(string title, string icon, string description)
         {
             Title = title;
-            ICone = icon;
+            Icone = icon;
             Description = description;
             Dossiers = new List<Dossier>();
             Items = new List<Item>();
@@ -65,7 +65,7 @@ namespace EntitiesLayer
 
         public override string ToString()
         {
-            string chaine = "Titre Dossier <" + Title + "> DateC <"+ Created + "> DateM <"+ Modified + "> ICON <" + ICone + ">  Description <" + Description + ">\n\t";
+            string chaine = "Titre Dossier <" + Title + "> DateC <"+ Created + "> DateM <"+ Modified + "> ICON <" + Icone + ">  Description <" + Description + ">\n\t";
             foreach(Item item in Items )
             {
                 chaine += item.ToString();

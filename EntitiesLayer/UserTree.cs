@@ -18,23 +18,7 @@ namespace EntitiesLayer
         }
 
         [XmlAttribute]
-        public string Password
-        {
-            get;
-            set;
-        }
-
-
-        [XmlAttribute]
-        public int NumberOFChars
-        {
-            get;
-            set;
-        }
-
-
-        [XmlAttribute]
-        public int NumerOfSpeciaux
+        public UserSettings Settings
         {
             get;
             set;
@@ -50,20 +34,23 @@ namespace EntitiesLayer
 
         public UserTree()
         {
-            NumberOFChars = 5;
-            NumerOfSpeciaux =5;
+            Settings = new UserSettings();
+            Settings.NumberOFChars = 5;
+            Settings.NumerOfSpeciaux = 5;
             
         }
        
-        public UserTree(string userName, int nbc, int nbs)
+        public UserTree(string userName, string pass, int nbc, int nbs)
         {
-            NumberOFChars = nbc;
-            NumerOfSpeciaux = nbs;
+            Settings = new UserSettings();
+            Settings.NumberOFChars = nbc;
+            Settings.NumerOfSpeciaux = nbs;
             UserName = userName;
-            Password = generatePassword();
-            Racine = new Dossier("Racine","c:/", "Dossier Racine");
-
+            // Settings.Password = generatePassword();
+            Settings.Password = pass;
+            Racine = new Dossier(userName,"", "Dossier Racine de " + userName);
         }
+
         public string generatePassword()
         {
             //j'ai défini une chaine qui contient tous les lettres Maj et Min
@@ -71,15 +58,15 @@ namespace EntitiesLayer
             //une autre chaine qui contient nombre et les charactères spéciaux
             string speciaux = "!@$?_-(){}[]|";
             // c'est la chaines qui va contenir le pswd
-            char [] chaine = new char[NumberOFChars + NumerOfSpeciaux];
+            char[] chaine = new char[Settings.NumberOFChars + Settings.NumerOfSpeciaux];
             Random rand = new Random();
-            
-            for (int i = 0; i < NumerOfSpeciaux ; i++ )
+
+            for (int i = 0; i < Settings.NumerOfSpeciaux; i++)
             {
                 chaine[i] = speciaux[rand.Next(0, speciaux.Length)];
 
             }
-            for (int i = NumerOfSpeciaux; i < (NumberOFChars + NumerOfSpeciaux); i++)
+            for (int i = Settings.NumerOfSpeciaux; i < (Settings.NumberOFChars + Settings.NumerOfSpeciaux); i++)
             {
                 chaine[i] = chars[rand.Next(0, chars.Length)];
             }
@@ -90,7 +77,7 @@ namespace EntitiesLayer
 
         public override string ToString()
         {
-            return "Nom Utilisateur  : " + UserName + " Paswword : " + Password + " DateC <" + Created + "> DateM <" + Modified + ">\n" + Racine.ToString();
+            return "Nom Utilisateur  : " + UserName + " Paswword : " + Settings.Password + " DateC <" + Created + "> DateM <" + Modified + ">\n" + Racine.ToString();
         }
 
     }
