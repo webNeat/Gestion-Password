@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 using System.IO;
 namespace FileLayer
 {
-    public class XMLFile : IDataBAse
+    public class XMLFile : IDatabase
     {
         public void save(UserTree user)
         {

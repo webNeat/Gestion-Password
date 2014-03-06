@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EntitiesLayer;
 namespace FileLayer
 {
-    public interface IDataBAse
+    public interface IDatabase
     {
         void save(UserTree user);
         UserTree load(string userName);
