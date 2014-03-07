@@ -16,7 +16,7 @@ namespace GraphicLayer
      *  > Retour
      *      se déplacer vers le dossier parent
      *  > AjouterDossier titre [icone:icone_url descr:description]
-     *      ajouter un dossier dans le dossier courant
+     *      ajouter un dossier dans le dossier courant et le contenu entre crochets est optionel
      *  > ModifierDossier titre_du_dossier [titre:nouveau_titre icone:nouvelle_icone descr:nouvelle_descr] 
      *      modifier un dossier dans le dossier courant
      *  > SupprimerDossier titre
@@ -28,7 +28,7 @@ namespace GraphicLayer
      *      modifier une clé dans le dossier courant
      * > SupprimerCle titre
      *      supprimer une clé dans le dossier courant
-     * > Choisir titre
+     * > Choisir titreClé
      *      séléctionner une clé pour pouvoir: 
      *          Ctrl+W : copier l'identifiant
      *          Ctrl+X : copier le mot de passe 

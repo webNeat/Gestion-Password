@@ -51,29 +51,7 @@ namespace EntitiesLayer
             Racine = new Dossier(userName,"", "Dossier Racine de " + userName);
         }
 
-        public string generatePassword()
-        {
-            //j'ai défini une chaine qui contient tous les lettres Maj et Min
-            string chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
-            //une autre chaine qui contient nombre et les charactères spéciaux
-            string speciaux = "!@$?_-(){}[]|";
-            // c'est la chaines qui va contenir le pswd
-            char[] chaine = new char[Settings.NumberOFChars + Settings.NumerOfSpeciaux];
-            Random rand = new Random();
-
-            for (int i = 0; i < Settings.NumerOfSpeciaux; i++)
-            {
-                chaine[i] = speciaux[rand.Next(0, speciaux.Length)];
-
-            }
-            for (int i = Settings.NumerOfSpeciaux; i < (Settings.NumberOFChars + Settings.NumerOfSpeciaux); i++)
-            {
-                chaine[i] = chars[rand.Next(0, chars.Length)];
-            }
-            // mélanger la chaine avant de retourner
-            String mix = new String(chaine.OrderBy(s => (rand.Next(2) % 2) == 0).ToArray());
-            return mix;
-        }
+      
 
         public override string ToString()
         {
