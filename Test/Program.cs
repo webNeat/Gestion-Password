@@ -12,7 +12,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            
+            /*
             UserTree tree = new UserTree("Internet", 5, 5);
             tree.Racine.AddItemToDossier(new Item("Facebook", "nabilzaini", tree.generatePassword(), "http//facebook.com", "mon compte face" ));         
             tree.Racine.AddSousDosToDossier(new Dossier("Sport", "ico1", "dossier du sport"));
@@ -22,7 +22,7 @@ namespace Test
 
             Manager manager =  Manager.GetInstance(new XMLFile());
             manager.save(tree);
-            Console.WriteLine(manager.load(Environment.UserName).ToString());
+            Console.WriteLine(manager.load(Environment.UserName).ToString());*/
 
 
         }
