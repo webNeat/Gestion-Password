@@ -15,29 +15,44 @@ namespace GraphicLayer
      *      se déplacer vers un sous dossier
      *  > Retour
      *      se déplacer vers le dossier parent
+<<<<<<< HEAD
      *  > AjouterDossier titre [icone:icone_url descr:description]
      *      ajouter un dossier dans le dossier courant et le contenu entre crochets est optionel
      *  > ModifierDossier titre_du_dossier [titre:nouveau_titre icone:nouvelle_icone descr:nouvelle_descr] 
+=======
+     *  > AjouterDossier titre [icone=icone_url descr=description]
+     *      ajouter un dossier dans le dossier courant
+     *  > ModifierDossier titre_du_dossier [titre=nouveau_titre icone=nouvelle_icone descr=nouvelle_descr] 
+>>>>>>> Last
      *      modifier un dossier dans le dossier courant
      *  > SupprimerDossier titre
      *      supprimer un dossier dans le dossier courant
      *  
-     * > AjouterCle titre login:identifiant [pass:mot_de_passe url:site_url descr:description]
+     * > AjouterCle titre login=identifiant [pass=mot_de_passe url=site_url descr=description]
      *      ajouter une clé dans le dossier courant
-     * > ModifierCle titre_de_clé [login:nouveau_identifiant pass:nouveau_mot_de_passe titre:nouveau_titre url:nouvelle_url descr:nouvelle_descr] 
+     * > ModifierCle titre_de_clé [login=nouveau_identifiant pass=nouveau_mot_de_passe titre=nouveau_titre url=nouvelle_url descr=nouvelle_descr] 
      *      modifier une clé dans le dossier courant
      * > SupprimerCle titre
      *      supprimer une clé dans le dossier courant
+<<<<<<< HEAD
      * > Choisir titreClé
      *      séléctionner une clé pour pouvoir: 
      *          Ctrl+W : copier l'identifiant
      *          Ctrl+X : copier le mot de passe 
      *          Ctrl+O : ouvrir l'url dans le navigateur
      *          ESC : quiter se mode
+=======
+     * > Choisir titre
+     *      séléctionner une clé pour pouvoir 
+     *          Ctrl+W = copier l'identifiant
+     *          Ctrl+X = copier le mot de passe 
+     *          Ctrl+O = ouvrir l'url dans le navigateur
+     *          ESC = quiter se mode
+>>>>>>> Last
      *          
      * > Config
      *      afficher les preferences de l'utilisateur
-     * > ModifierConfig pass-taille:nouvelle_taille spec-carac:nombre_des_caractères_spéciaux ...
+     * > ModifierConfig pass-taille=nouvelle_taille spec-carac=nombre_des_caractères_spéciaux ...
      *      modifier les preferences de l'utilisateur
      *      
      * > Sauvegarder 
@@ -69,7 +84,7 @@ namespace GraphicLayer
             List<string> item;
             foreach (string element in list)
             {
-                item = new List<string>(element.Split(':'));
+                item = new List<string>(element.Split('='));
                 if (item.Count < 2)
                     item.Add("");
                 map[item[0]] = item[1];
@@ -145,6 +160,11 @@ namespace GraphicLayer
                             if (arguments.Count < 2)
                                 throw new Exception("Syntax: > SupprimerCle titre");
                             Controller.SupprimerCle(arguments[1]);
+                            break;
+                        case "voircle":
+                            if (arguments.Count < 2)
+                                throw new Exception("Syntax: > VoirCle titre");
+                            Controller.VoirCle(arguments[1]);
                             break;
                         case "choisir":
                             if (arguments.Count < 2)

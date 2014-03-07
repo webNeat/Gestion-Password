@@ -99,7 +99,8 @@ namespace BusinessLayer
             return null;
         }
 
-        private Item findItemIntoDossier(Dossier dossier, string name)
+
+        public Item findItemIntoDossier(Dossier dossier, string name)
         {
             foreach (Item item in dossier.Items)
             {

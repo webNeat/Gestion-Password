@@ -7,24 +7,41 @@ using System.Windows.Forms;
 using EntitiesLayer;
 using BusinessLayer;
 using System.Diagnostics;
+using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace GraphicLayer
 {
     // TODO: Add Threads ... !
     // Regex Checkings !
-    // App Settings
     class Controller
     {
         private static IManager manager;
         private static bool saved;
+        public static SettingsHandler Settings;
 
         private static void Init()
         {
             string user = Environment.UserName;
+            Settings = ConfigurationManager.GetSection("mySettings") as SettingsHandler;
+            // manager.SetDatabaseType ...
             if (manager.Exists(user))
             {
                 manager.Load(user);
                 Console.WriteLine("Bonjour {0} Vos données ont été chargées", user);
+                if (Settings.RequirePass == "yes")
+                {
+                    do
+                    {
+                        Console.Write("Entrez votre mot de passe : ");
+                        ConsoleColor temp = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        string pass = Console.ReadLine();
+                        Console.ForegroundColor = temp;
+                        if (pass == manager.GetUserSettings().Password)
+                            break;
+                    } while (true);
+                }
             }
             else
             {
@@ -146,8 +163,9 @@ namespace GraphicLayer
             if (values.ContainsKey("descr"))
                 descr = values["descr"];
 
-            // TODO: Check the url with Regex 
-            
+            Regex urlPattern = new Regex(@"^(http\(s\)?://[\w]*\.[\w.]*[\w]{2,})$");
+            if (!urlPattern.IsMatch(url))
+                throw new Exception("Le lien donnée n'est pas valide" + url);
             Item i = manager.AddItem(values["titre"], login, pass, url, descr);
             Console.WriteLine("La clé {0} a été ajouté avec succés", i.Title);
         }
@@ -173,16 +191,30 @@ namespace GraphicLayer
             if (values.ContainsKey("pass"))
                 pass = values["pass"];
 
-            // TODO: Check the url with Regex
+            Regex urlPattern = new Regex(@"^\(http(s)?://[\w]*\.[\w.]*[\w]{2,}\)$");
+            if (!urlPattern.IsMatch(url))
+                throw new Exception("Le lien donnée n'est pas valide : " + url);
 
             manager.EditItem(values["name"], title, login, pass, url, descr);
             Console.WriteLine("La clé a été modifié");
         }
-        public static void SupprimerCle(string name){
+        public static void SupprimerCle(string name)
+        {
             if (manager.DeleteItem(name))
                 Console.WriteLine("La clé a été supprimé");
             else
                 throw new Exception("Clé introuvable");
+        }
+        public static void VoirCle(string name)
+        {
+            Item i = manager.GetItemByTitle(name);
+            if (i == null)
+                throw new Exception("Clé introuvable");
+            Console.WriteLine("Titre : {0}",i.Title);
+            Console.WriteLine("Login : {0}",i.Login);
+            Console.WriteLine("Password : {0}",i.Password);
+            Console.WriteLine("Url : {0}",i.Url);
+            Console.WriteLine("Description : {0}",i.Description);
         }
         public static void Choisir(string name){
             Item i = manager.GetItemByTitle(name);

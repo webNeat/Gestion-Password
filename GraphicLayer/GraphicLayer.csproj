@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\EntitiesLayer\EntitiesLayer.csproj">
       <Project>{fd6ead00-cbf9-4733-b63a-35cfbe93a060}</Project>
       <Name>EntitiesLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileLayer\FileLayer.csproj">
+      <Project>{01de9cd4-83df-4494-b0e8-094bb1af49f5}</Project>
+      <Name>FileLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
