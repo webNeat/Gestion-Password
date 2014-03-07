@@ -99,6 +99,11 @@ namespace BusinessLayer
             return null;
         }
 
+        Item FindItem(string name)
+        {
+
+            return null;
+        }
 
         public Dossier GetCurrentFolder()
         {
@@ -156,10 +161,21 @@ namespace BusinessLayer
 
         public Item AddItem(string title, string login, string pass, string url, string descr)
         {
+            if (pass == "")
+            {
+                pass = GeneratePassword();
+            }
             Item nouveau = new Item(title, login, pass, url, descr);
             GetCurrentFolder().Items.Add(nouveau);
             OnChanged();
             return nouveau;
+        }
+
+        private string GeneratePassword() 
+        {
+            string result = "";
+            // Générer à base des userSettings
+            return result;
         }
 
         public bool EditItem(string name, string title, string login, string pass, string url, string descr)

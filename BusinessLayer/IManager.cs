@@ -20,6 +20,7 @@ namespace BusinessLayer
         void CreateUser(string userName, string pass, int numChars, int numSpecChars);
         Dossier GetFolderByTitle(string name);
         Item GetItemByTitle(string name);
+        Item FindItem(string name);
         Dossier GetCurrentFolder();
         Dossier MoveToFolder(string name);
         Dossier GetParentFolder();
