@@ -99,7 +99,7 @@ namespace BusinessLayer
             return null;
         }
 
-        Item FindItem(string name)
+        public Item FindItem(string name)
         {
 
             return null;
