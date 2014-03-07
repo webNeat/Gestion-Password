@@ -1,0 +1,12 @@
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\API.exe.config
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\API.exe
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\API.pdb
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\BusinessLayer.dll
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\EntitiesLayer.dll
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\FileLayer.dll
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\BusinessLayer.pdb
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\EntitiesLayer.pdb
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\bin\Debug\FileLayer.pdb
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\obj\Debug\API.exe
+C:\Users\webNeat\Documents\GitHub\Gestion-Password\API\obj\Debug\API.pdb

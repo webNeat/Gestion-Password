@@ -99,10 +99,26 @@ namespace BusinessLayer
             return null;
         }
 
+        private Item findItemIntoDossier(Dossier dossier, string name)
+        {
+            foreach (Item item in dossier.Items)
+            {
+                if(item.Title == name)
+                    return item;
+            }
+            Item result =null;
+            int i = 0;
+            while (result == null && i < dossier.Dossiers.Count )
+            {
+                findItemIntoDossier(dossier.Dossiers[i], name);
+                i++;
+            }
+            return result;
+ 
+        }
         public Item FindItem(string name)
         {
-
-            return null;
+            return findItemIntoDossier(userData.Racine, name);
         }
 
         public Dossier GetCurrentFolder()
@@ -143,6 +159,7 @@ namespace BusinessLayer
             if (d == null)
                 return false;
             d.Title = title;
+            d.Modified = DateTime.UtcNow;
             d.Icone = icon;
             d.Description = descr;
             OnChanged();
@@ -167,23 +184,47 @@ namespace BusinessLayer
             }
             Item nouveau = new Item(title, login, pass, url, descr);
             GetCurrentFolder().Items.Add(nouveau);
+            GetCurrentFolder().Modified = DateTime.UtcNow;
             OnChanged();
             return nouveau;
         }
 
         private string GeneratePassword() 
-        {
-            string result = "";
-            // Générer à base des userSettings
-            return result;
+        {   //j'ai défini une chaine qui contient tous les lettres Maj et Min
+            string chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
+            //une autre chaine qui contient nombre et les charactères spéciaux
+            string speciaux = "!@$?_-(){}[]|";
+            // c'est la chaines qui va contenir le pswd
+            char [] chaine = new char[userData.Settings.NumberOFChars + userData.Settings.NumerOfSpeciaux];
+            Random rand = new Random();
+            int spec = userData.Settings.NumerOfSpeciaux;
+            int car = userData.Settings.NumberOFChars;
+            for (int i = 0; i < spec; i++)
+            {
+                chaine[i] = speciaux[rand.Next(0, speciaux.Length)];
+
+            }
+            for (int i = spec; i < (car + spec); i++)
+            {
+                chaine[i] = chars[rand.Next(0, chars.Length)];
+            }
+            // mélanger la chaine avant de retourner
+            String mix = new String(chaine.OrderBy(s => (rand.Next(2) % 2) == 0).ToArray());
+            return mix;
+        
         }
 
         public bool EditItem(string name, string title, string login, string pass, string url, string descr)
         {
+            if (pass == "")
+            {
+                pass = GeneratePassword();
+            }
             Item i = GetItemByTitle(name);
             if (i == null)
                 return false;
             i.Title = title;
+            i.Modified = DateTime.UtcNow;
             i.Login = login;
             i.Password = pass;
             i.Url = url;
