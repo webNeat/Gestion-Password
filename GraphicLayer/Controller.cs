@@ -146,8 +146,7 @@ namespace GraphicLayer
             if (values.ContainsKey("descr"))
                 descr = values["descr"];
 
-            // TODO: Check the url with Regex
-            // TODO: generate the pass if not given 
+            // TODO: Check the url with Regex 
             
             Item i = manager.AddItem(values["titre"], login, pass, url, descr);
             Console.WriteLine("La clé {0} a été ajouté avec succés", i.Title);
@@ -175,7 +174,6 @@ namespace GraphicLayer
                 pass = values["pass"];
 
             // TODO: Check the url with Regex
-            // TODO: generate the pass if not given 
 
             manager.EditItem(values["name"], title, login, pass, url, descr);
             Console.WriteLine("La clé a été modifié");
